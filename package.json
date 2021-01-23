@@ -1,0 +1,24 @@
+{
+  "name": "requestum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register -r source-map-support/register 'src/test/**/*.test.ts' --exit",
+    "watch": "tsc --watch",
+    "prebuild": "rm -rf dist",
+    "build": "tsc"
+  },
+  "author": "Pavel Pavlenko",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "@types/moment": "^2.13.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
+  },
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
+}
