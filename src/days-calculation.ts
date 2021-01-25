@@ -1,5 +1,4 @@
-import moment from "moment";
-import { prepareDate, prepareSchedule, validateSchedule } from "./utils";
+import { prepareDateParts, prepareSchedule, validateSchedule } from "./utils";
 
 export function dayCalculation(startDate: string, trainingCount: number, schedule: number[]) {
   if (!validateSchedule(schedule)) {
@@ -7,20 +6,20 @@ export function dayCalculation(startDate: string, trainingCount: number, schedul
   }
 
   try {
-    const isoDate = prepareDate(startDate);
+    const [year, month, day] = prepareDateParts(startDate);
     const cleanedSchedule = prepareSchedule(schedule);
     let daysCounter = 0;
     let trainingCounter = 0;
-    let momentDate = moment.utc(isoDate, true);
+    let dateObj = new Date(Date.UTC(year, month, day));
     while (trainingCounter < trainingCount) {
-      const dayOfWeek = momentDate.day();
+      const dayOfWeek = dateObj.getDay();
 
       if (cleanedSchedule.includes(dayOfWeek)) {
         trainingCounter++;
       }
 
       daysCounter++;
-      momentDate.add(1, 'day');
+      dateObj.setDate(dateObj.getDate() + 1);
     }
 
     return daysCounter

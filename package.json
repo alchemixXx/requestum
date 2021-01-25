@@ -14,11 +14,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
-    "@types/moment": "^2.13.0",
     "chai": "^4.2.0",
     "mocha": "^8.2.1"
-  },
-  "dependencies": {
-    "moment": "^2.29.1"
   }
 }

@@ -1,13 +1,20 @@
 
 
-export function prepareDate(date: string): string {
+export function prepareDateParts(date: string): number[] {
   const parts = date.split(/\D|T/)  // separate parts by any non-digit delimiter
   parts.splice(3);  // discard time component
 
   const validDate = checkISOFormat(parts);
 
   if (validDate) {
-    return parts.join('-');
+    return parts.map((el, index) => {
+      if (index === 1) {
+        // in js month starts from 0. need to reduce this element
+        return Number(el) - 1;
+      }
+
+      return Number(el);
+    });
   }
 
   throw new Error('Unsupported format')
